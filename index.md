@@ -1,4 +1,4 @@
-## Apresentação - Gangoy Framework
+# Sobre Gangoy Framework
 [![Latest Stable Version](https://poser.pugx.org/tjg/microframework/v/stable)](https://packagist.org/packages/tjg/microframework)
 [![Latest Unstable Version](https://poser.pugx.org/tjg/microframework/v/unstable)](https://packagist.org/packages/tjg/microframework)
 [![Total Downloads](https://poser.pugx.org/tjg/microframework/downloads)](https://packagist.org/packages/tjg/microframework)
@@ -17,15 +17,15 @@ ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e
 
 <br>
 
-#### Site do desenvolvedor
+## Site do desenvolvedor
 [http://www.tjgweb.com.br](http://www.tjgweb.com.br "TJG Web")
 
-#### Vídeo-aulas sobre o Framework
+## Vídeo-aulas sobre o Framework
 [Acesse nosso canal no YouTube](https://www.youtube.com/tjgweb)
 
 <br>
 
-## Requisitos
+# Requisitos
 - PHP >= 5.6.9
 - PDO PHP Extension or Sqlite3 PHP Extension for database
 - Mbstring PHP Extension
@@ -34,15 +34,21 @@ ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e
 
 <br>
 
-## Instalação
-**Via Composer Create-Project**
+# Instalação
+Utilizando [Composer](https://getcomposer.org/) Create-Project
 
-    composer create-project tjg/gangoy nome_do_projeto
+    composer create-project tjg/gangoy seu_projeto
+
+Navegue com o terminal até o diretório raiz do projeto e digite o seguinte comando para iniciar o servidor.
+
+	php gangoy server
+	 
+Abra o navegador e acesse `localhost:8080`
 
 <br>
 
 <a name="agradecimentos"></a>
-## Agradecimentos
+# Agradecimentos
 Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez delas foi possível chegarmos a este trabalho.
 
 - [Slim Framework](https://www.slimframework.com/)
@@ -61,5 +67,5 @@ Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez d
 
 <br>
 
-## License
+# License
 The `Gangoy Framework` is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
