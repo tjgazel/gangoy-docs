@@ -1,11 +1,10 @@
 # Apresentação
-### Gangoy
 [![Latest Stable Version](https://poser.pugx.org/tjg/microframework/v/stable)](https://packagist.org/packages/tjg/microframework)
 [![Latest Unstable Version](https://poser.pugx.org/tjg/microframework/v/unstable)](https://packagist.org/packages/tjg/microframework)
 [![Total Downloads](https://poser.pugx.org/tjg/microframework/downloads)](https://packagist.org/packages/tjg/microframework)
 [![License](https://poser.pugx.org/tjg/microframework/license)](https://packagist.org/packages/tjg/microframework)
 
-Gangoy é um framework PHP desenvolvido com um conjunto de excelentes bibliotecas. Sua base foi feita sobre o 
+**Gangoy** é um framework PHP desenvolvido com um conjunto de excelentes bibliotecas. Sua base foi feita sobre o 
 esqueleto do [**Slim 3**](https://www.slimframework.com/ "Slim Framework") e segue as orientações das PSRs 
 fornecidas pelo [**PHP-FIG**](http://www.php-fig.org/ "PHP-FIG").
 
@@ -18,4 +17,7 @@ ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e
 
 **Site do desenvolvedor:** [http://www.tjgweb.com.br](http://www.tjgweb.com.br "TJG Web")
 
-**Vídeo-aulas sobre o Framework:** [YouTube - Canal TJG Web](https://www.youtube.com/tjgweb)
+<br>
+
+#Vídeo-aulas
+[YouTube - Canal TJG Web](https://www.youtube.com/tjgweb)
