@@ -1,4 +1,4 @@
-# Agradecimentos
+### Agradecimentos
 Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez delas foi possível chegarmos a este trabalho.
 
 - [Slim Framework](https://www.slimframework.com/)
@@ -15,10 +15,10 @@ Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez d
 - [Hash ids](https://github.com/ivanakimov/hashids.php)
 
 
-## Site do desenvolvedor
+### Site do desenvolvedor
 [http://www.tjgweb.com.br](http://www.tjgweb.com.br "TJG Web")
 
 <br>
 
-# Vídeo-aulas
+### Vídeo-aulas
 [YouTube - Canal TJG Web](https://www.youtube.com/tjgweb)

@@ -1,4 +1,4 @@
-# Sobre
+## Apresentação - Gangoy Framework
 [![Latest Stable Version](https://poser.pugx.org/tjg/microframework/v/stable)](https://packagist.org/packages/tjg/microframework)
 [![Latest Unstable Version](https://poser.pugx.org/tjg/microframework/v/unstable)](https://packagist.org/packages/tjg/microframework)
 [![Total Downloads](https://poser.pugx.org/tjg/microframework/downloads)](https://packagist.org/packages/tjg/microframework)
@@ -13,31 +13,36 @@ Usamos o conceito de Serviços/Container, tornando fácil adicionar novas funcio
 Foi projetado para que o desenvolvedor tenha em mãos recursos básicos/excenciais que são comuns em qualquer projeto Web,
 ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e padrões de desenvolvimento.
 
-> Veja mais sobre as bibliotecas usadas na seção [**Agradecimentos**](agradecimentos.md).
+> Veja mais sobre as bibliotecas usadas na seção [**Agradecimentos**](#agradecimentos).
 
+<br>
 
-# Requisitos
+#### Site do desenvolvedor
+[http://www.tjgweb.com.br](http://www.tjgweb.com.br "TJG Web")
+
+#### Vídeo-aulas sobre o Framework
+[Acesse nosso canal no YouTube](https://www.youtube.com/tjgweb)
+
+<br>
+
+## Requisitos
 - PHP >= 5.6.9
 - PDO PHP Extension or Sqlite3 PHP Extension for database
 - Mbstring PHP Extension
 - Bcmath PHP Extension
 - XML PHP Extension
 
-# Instalação
+<br>
+
+## Instalação
 **Via Composer Create-Project**
 
     composer create-project tjg/gangoy nome_do_projeto
 
-# Site do desenvolvedor
-[http://www.tjgweb.com.br](http://www.tjgweb.com.br "TJG Web")
+<br>
 
-# Vídeo-aulas sobre o Framework
-[Acesse nosso canal no YouTube](https://www.youtube.com/tjgweb)
-
-# License
-The `Gangoy Framework` is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-# Agradecimentos
+<a name="agradecimentos"></a>
+## Agradecimentos
 Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez delas foi possível chegarmos a este trabalho.
 
 - [Slim Framework](https://www.slimframework.com/)
@@ -52,3 +57,9 @@ Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez d
 - [Symfony console](https://github.com/symfony/console)
 - [PHP dotenv](https://github.com/vlucas/phpdotenv)
 - [Hash ids](https://github.com/ivanakimov/hashids.php)
+
+
+<br>
+
+## License
+The `Gangoy Framework` is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
