@@ -16,6 +16,8 @@ Lida somente com solicitações HTTP do tipo GET e aceita 2 argumentos:
         // Show book identified by $args['id']
     });
 
+<br>
+ 
 #### post()
 Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
 
@@ -27,6 +29,8 @@ Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
         // Create new book
     });
 
+<br>
+
 #### put()
 Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
 
@@ -37,7 +41,9 @@ Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
     $app->put('/books/{id}', function ($request, $response, $args) {
         // Update book identified by $args['id']
     });
-    
+ 
+<br>
+   
 #### delete()
 Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
 
@@ -48,6 +54,8 @@ Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
     $app->delete('/books/{id}', function ($request, $response, $args) {
         // Delete book identified by $args['id']
     });
+
+<br>
     
 #### patch()
 Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
@@ -60,6 +68,8 @@ Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
         // Apply changes to book identified by $args['id']
     });
 
+<br>
+
 #### options()
 Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
 
@@ -70,6 +80,8 @@ Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
     $app->options('/books/{id}', function ($request, $response, $args) {
         // Return response headers
     });
+
+<br>
     
 #### any()
 Você pode adicionar uma rota que manipule todos os métodos de solicitação HTTP. Ele aceita 2 argumentos:
@@ -82,9 +94,7 @@ Você pode adicionar uma rota que manipule todos os métodos de solicitação HT
         // Apply changes to books or book identified by $args['id'] if specified.
         // To check which method is used: $request->getMethod();
     });
-    
-
-    
+       
 <br>
 
 ## Parâmetros
@@ -95,7 +105,9 @@ e podem ser recuperados através da matrís `$args`.
         echo "Hello, " . $args['name'];
     });
 
-##### Parâmetros Opcionais
+<br>
+
+#### Parâmetros Opcionais
 Para tornar um parâmetro de rota opcional, envolva entre colchetes:
 
     $app->get('/users[/{id}]', function ($request, $response, $args) {
@@ -119,7 +131,7 @@ Para parâmetros opcionais "ilimitados", você pode fazer isso:
 
 <br>
     
-##### Parâmetros com expressões regulares
+#### Parâmetros com expressões regulares
 Por padrão os parâmetros são escritos detro de {} e podem aceitar quaisquer valores. No entanto, também podem exigir que 
 uma URI coincida com uma expressão regular, caso contrário ela não é invocada. Este exemplo a rota requer um parâmetro
 com 1 ou mais dígitos:

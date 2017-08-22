@@ -20,13 +20,13 @@ do seu ambiente.
     DB_COLLATION=utf8_unicode_ci
     DB_PREFIX=
     
-- **DISPLAY_ERRORS** - mostra erros de forma elegante, ideal para o desenvolvimento. Deixe como false no seu ambiente de produção.
-- **CACHE_VIEWS** - Ativa o sistema de cache para as views.
-- **DETERMINE_ROUTE_BEFORE_APP_MIDDLEWARE** - Determina as rotas antes de rodar os middleware. Deixe como true se 
+- **DISPLAY_ERRORS**  mostra erros de forma elegante, ideal para o desenvolvimento. Deixe como false no seu ambiente de produção.
+- **CACHE_VIEWS**  Ativa o sistema de cache para as views.
+- **DETERMINE_ROUTE_BEFORE_APP_MIDDLEWARE**  Determina as rotas antes de rodar os middleware. Deixe como true se 
 for utilizar o sistema de autenticação.
-- **AUTH_SESSION_MODEL** - namespace do model usado para autenticação.
-- **AUTH_SESSION_NAME** - nome da chave que será usada para a sessão de autenticação.
-- **DB_** - configurações do seu banco de dados. Por padrão o framework está configurado sqlite, ideal para o 
+- **AUTH_SESSION_MODEL**  namespace do model usado para autenticação.
+- **AUTH_SESSION_NAME**  nome da chave que será usada para a sessão de autenticação.
+- **DB_**  configurações do seu banco de dados. Por padrão o framework está configurado sqlite, ideal para o 
 desenvolvimento e teste locais. 
 
 <br>
@@ -34,7 +34,7 @@ desenvolvimento e teste locais.
 # Configurações de Servidor
 Todas as solicitações HTTP devem ser encaminhadas para o arquivo `index.php` que se encontra no diretório public. 
 
-### Apache
+#### Apache
 Certifique-se de que seus arquivos `.htaccess` e `index.php` estejam no mesmo diretório acessível ao público. 
 O arquivo `.htaccess` deve conter este código:
 
@@ -44,8 +44,10 @@ O arquivo `.htaccess` deve conter este código:
         RewriteCond %{REQUEST_FILENAME} !-d
         RewriteRule ^ index.php [QSA,L]
     </IfModule>
-    
-### Nginx
+ 
+<br>
+   
+#### Nginx
 Você deve atualizar os `server_name`, `error_log`, `access_log`, e `root` com seus próprios valores. A diretiva `root` 
 é o caminho para o diretório `public` do seu aplicativo onde está o arquivo `index.php`
 
