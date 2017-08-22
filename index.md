@@ -25,12 +25,9 @@ ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e
 
 <br>
 
-# Requisitos
-- PHP >= 5.6.9
-- PDO PHP Extension or Sqlite3 PHP Extension for database
-- Mbstring PHP Extension
-- Bcmath PHP Extension
-- XML PHP Extension
+# Requisitos de sistema
+- Web server with URL rewriting
+- PHP 5.6.9 or newer
 
 <br>
 
