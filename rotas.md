@@ -11,6 +11,8 @@ Lida somente com solicitações HTTP do tipo GET e aceita 2 argumentos:
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
 
+<br>
+
 ``` 
 $app->get('/books/{id}', function ($request, $response, $args) {
     // Show book identified by $args['id']
@@ -24,6 +26,8 @@ Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
 
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
+
+<br>
 
 ```    
 $app->post('/books', function ($request, $response, $args) {
@@ -39,6 +43,8 @@ Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
 
+<br>
+
 ```   
 $app->put('/books/{id}', function ($request, $response, $args) {
     // Update book identified by $args['id']
@@ -52,6 +58,8 @@ Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
 
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
+
+<br>
 
 ```   
 $app->delete('/books/{id}', function ($request, $response, $args) {
@@ -67,6 +75,8 @@ Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
 
+<br>
+
 ```    
 $app->patch('/books/{id}', function ($request, $response, $args) {
     // Apply changes to book identified by $args['id']
@@ -80,6 +90,8 @@ Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
 
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
+
+<br>
 
 ```    
 $app->options('/books/{id}', function ($request, $response, $args) {
@@ -95,6 +107,8 @@ Você pode adicionar uma rota que manipule todos os métodos de solicitação HT
 1. Pattern (caminho e parâmetros opcionais).
 2. Callback (poder uma função ou um controller).
 
+<br>
+
 ```   
 $app->any('/books/[{id}]', function ($request, $response, $args) {
     // Apply changes to books or book identified by $args['id'] if specified.
@@ -107,6 +121,8 @@ $app->any('/books/[{id}]', function ($request, $response, $args) {
 ## Parâmetros
 Parâmetros de rotas são muito simples, devem estar entre `{}`
 e podem ser recuperados através da matrís `$args`.
+
+<br>
 
 ``` 
 $app->get('/hello/{name}', function ($request, $response, $args) {
