@@ -1,5 +1,5 @@
 # Rotas
-O sistema de rotas trabalha com os verbos HTTP `GET, POST, PUT, PATCH, DELETE, OPTIONS`.
+O sistema de rotas trabalha com os verbos HTTP `GET, POST, PUT, PATCH, DELETE, OPTIONS`. 
 Suas rotas devem ser definidas no arquivo `routes.php` que se encontra no diretŕio app (app/routes.php).
 
 <br>
@@ -8,10 +8,8 @@ Suas rotas devem ser definidas no arquivo `routes.php` que se encontra no diret�
 #### get()
 Lida somente com solicitações HTTP do tipo GET e aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ``` 
 $app->get('/books/{id}', function ($request, $response, $args) {
@@ -24,10 +22,8 @@ $app->get('/books/{id}', function ($request, $response, $args) {
 #### post()
 Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ```    
 $app->post('/books', function ($request, $response, $args) {
@@ -40,10 +36,8 @@ $app->post('/books', function ($request, $response, $args) {
 #### put()
 Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ```   
 $app->put('/books/{id}', function ($request, $response, $args) {
@@ -56,10 +50,8 @@ $app->put('/books/{id}', function ($request, $response, $args) {
 #### delete()
 Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ```   
 $app->delete('/books/{id}', function ($request, $response, $args) {
@@ -72,10 +64,8 @@ $app->delete('/books/{id}', function ($request, $response, $args) {
 #### patch()
 Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ```    
 $app->patch('/books/{id}', function ($request, $response, $args) {
@@ -88,10 +78,8 @@ $app->patch('/books/{id}', function ($request, $response, $args) {
 #### options()
 Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ```    
 $app->options('/books/{id}', function ($request, $response, $args) {
@@ -104,10 +92,8 @@ $app->options('/books/{id}', function ($request, $response, $args) {
 #### any()
 Você pode adicionar uma rota que manipule todos os métodos de solicitação HTTP. Ele aceita 2 argumentos:
 
-1. Pattern (caminho e parâmetros opcionais).
-2. Callback (poder uma função ou um controller).
-
-<br>
+1 - Pattern (caminho e parâmetros opcionais).<br>
+2 - [Callback](#callback) (poder uma função ou um controller).
 
 ```   
 $app->any('/books/[{id}]', function ($request, $response, $args) {
@@ -118,11 +104,25 @@ $app->any('/books/[{id}]', function ($request, $response, $args) {
       
 <br>
 
+#### map()
+Você pode adicionar uma rota que manipule os métodos de solicitação HTTP que forem declarados no primeiro argumento 
+da função. Ele aceita 3 argumentos:
+
+1 - Array de métodos HTTP.<br>
+2 - Pattern (caminho e parâmetros opcionais).<br>
+3 - [Callback](#callback) (poder uma função ou um controller).
+
+```   
+$app->map(['GET', 'POST'], '/books', function ($request, $response, $args) {
+    // Create new book or list all books
+});
+```
+      
+<br>
+
 ## Parâmetros
 Parâmetros de rotas são muito simples, devem estar entre `{}`
 e podem ser recuperados através da matrís `$args`.
-
-<br>
 
 ``` 
 $app->get('/hello/{name}', function ($request, $response, $args) {
@@ -209,4 +209,45 @@ $app->group('/users/{id:[0-9]+}', function () use($app) {
     })->setName('user-password-reset');
     
 });
+```
+<br>
+
+<a name="callback"></a>
+## Callback
+Cada método de roteamento descrito acima aceita uma rotina de retorno como seu argumento final. Esse argumento 
+pode ser uma função como demonstrado nos exemplos, mas nós construímos Gangoy framework pensando em um modelo MVC e 
+recomendamos o uso de um controller [(Saiba como usar um controller)](Controllers.md).
+
+Por padrão, ele aceita três argumentos.
+
+- **[Request](Request_e_Response.md)** O primeiro argumento é um objeto Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
+- **[Response](Request_e_Response.md)** O segundo argumento é um objeto Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
+- **Arguments** O terceiro argumento é uma matriz assiciativa que contém os valores dos parâmetros de rota.
+
+[Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
+
+#### Exemplo com um controller
+
+`route.php`
+```
+$app->get('/', '\App\Controllers\HomeController:index')->setName('home');
+```
+
+`HomeController.php`
+```
+<?php
+
+namespace App\Controllers;
+
+use TJG\Gangoy\Http\Controller\BaseController;
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
+class HomeController extends BaseController
+{
+    public function index(Request $req, Response $res, $args)
+    {
+       return $response->getBody()->write("Hello");
+    }
+}
 ```

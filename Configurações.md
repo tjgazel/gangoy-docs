@@ -1,4 +1,4 @@
-# Configurações
+# Configurações gerais
 
 Após a instalação você deve olhar para o arquivo `.env` , onde deve ser configurado todos os dados sensíveis 
 do seu ambiente.
@@ -33,10 +33,10 @@ desenvolvimento e teste locais.
 
 <br>
 
-# Configurações de Servidor
+# Servidor
 Todas as solicitações HTTP devem ser encaminhadas para o arquivo `index.php` que se encontra no diretório public. 
 
-#### Apache
+##### Apache
 Certifique-se de que seus arquivos `.htaccess` e `index.php` estejam no mesmo diretório acessível ao público. 
 O arquivo `.htaccess` deve conter este código:
 
@@ -51,7 +51,7 @@ O arquivo `.htaccess` deve conter este código:
  
 <br>
    
-#### Nginx
+##### Nginx
 Você deve atualizar os `server_name`, `error_log`, `access_log`, e `root` com seus próprios valores. A diretiva `root` 
 é o caminho para o diretório `public` do seu aplicativo onde está o arquivo `index.php`
 
