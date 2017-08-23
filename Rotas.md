@@ -245,7 +245,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 class HomeController extends BaseController
 {
-    public function index(Request $req, Response $res, $args)
+    public function index(Request $request, Response $response, $args)
     {
        return $response->getBody()->write("Hello");
     }

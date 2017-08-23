@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/tjg/microframework/downloads)](https://packagist.org/packages/tjg/microframework)
 [![License](https://poser.pugx.org/tjg/microframework/license)](https://packagist.org/packages/tjg/microframework)
 
-**Gangoy** é um framework PHP desenvolvido com um conjunto de excelentes bibliotecas. Sua base foi feita sobre o 
+**Gangoy** é um framework PHP desenvolvido sobre um conjunto de bibliotecas bem conhecidas na comunidade PHP. Sua base foi feita sobre o 
 esqueleto do [**Slim 3**](https://www.slimframework.com/ "Slim Framework") e segue as orientações das PSRs 
 fornecidas pelo [**PHP-FIG**](http://www.php-fig.org/ "PHP-FIG").
 
