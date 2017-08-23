@@ -216,12 +216,12 @@ $app->group('/users/{id:[0-9]+}', function () use($app) {
 ## Callback
 Cada método de roteamento descrito acima aceita uma rotina de retorno como seu argumento final. Esse argumento 
 pode ser uma função como demonstrado nos exemplos, mas nós construímos Gangoy framework pensando em um modelo MVC e 
-recomendamos o uso de um controller [(Saiba como usar um controller)](Controllers.md).
+recomendamos o uso de um controller [(Saiba como usar um controller)](controllers.md).
 
 Por padrão, ele aceita três argumentos.
 
-- **[Request](Request_e_Response.md)** O primeiro argumento é um objeto Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
-- **[Response](Request_e_Response.md)** O segundo argumento é um objeto Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
+- **[Request](request.md)** O primeiro argumento é um objeto Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
+- **[Response](response.md)** O segundo argumento é um objeto Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
 - **Arguments** O terceiro argumento é uma matriz assiciativa que contém os valores dos parâmetros de rota.
 
 [Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
