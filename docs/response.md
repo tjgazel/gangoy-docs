@@ -1,7 +1,7 @@
 # Response
 As rotas e o middleware da aplicação recebem um objeto Response do PSR 7 que representa a resposta HTTP atual 
 a ser retornada ao cliente. O objeto de resposta implementa o `ResponseInterface` PSR 7 com o qual você pode inspecionar 
-e manipular o [status](#status) de resposta HTTP, [headers](#header) e [body](#status).
+e manipular o [status](#status) de resposta HTTP, [headers](#header) e [body](#body).
 
 <br>
 
