@@ -184,7 +184,7 @@ $body->write('Hello');
 
 #### Retornando JSON
 O objeto Response que usamos em Gangoy Framework, herda as caracterísiticas do Slim. Com isso, ele possui um método 
-personalizado `withJson($data, $status, $encodingOptions) para ajudar a simplificar o processo de retorno de dados JSON.
+personalizado `withJson($data, $status, $encodingOptions)` para ajudar a simplificar o processo de retorno de dados JSON.
 
 - $data contém a estrutura de dados que você deseja retornar como JSON.
 - $status é opcional e pode ser usado para retornar um código HTTP personalizado.

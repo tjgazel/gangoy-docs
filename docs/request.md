@@ -209,7 +209,7 @@ $body = $request->getBody();
 
 ### Uploaded Files
 Os carregamentos de arquivos $_FILES estão disponíveis a partir do método `getUploadedFiles()` do objeto Request . Isso 
-retorna uma matriz pelo nome do elemento <input>.
+retorna uma matriz pelo nome do elemento `<input>`.
 
 ```
 $files = $request->getUploadedFiles();
