@@ -38,7 +38,7 @@ class HomeController extends BaseController
 
 <br>
 
-+ O objeto Response PSR 7 também é injetado nos middleware como o segundo argumento. 
+- O objeto Response PSR 7 também é injetado nos middleware como o segundo argumento. 
 Veja nosso exemplo de implementação:
 
 ```
@@ -76,14 +76,18 @@ Toda resposta HTTP possui um [código de status numérico](https://www.w3.org/Pr
 O código de status identifica o tipo de resposta HTTP a ser retornado ao cliente. O código de status padrão do objeto 
 de Response PSR 7 é 200(OK). Você pode obter o código de status do objeto Response PSR 7 com o método `getStatusCode()`.
 
-    $status = $response->getStatusCode();
+```
+$status = $response->getStatusCode();
+```
 
 <br>
 
 Você pode pegar um objeto Response PSR 7 e atribuir um novo código de status:
 
-    $newResponse = $response->withStatus(302);
-    return $newResponse;
+```
+$newResponse = $response->withStatus(302);
+return $newResponse;
+```
 
 <br>
 
@@ -92,7 +96,7 @@ Você pode pegar um objeto Response PSR 7 e atribuir um novo código de status:
 Toda resposta HTTP possui cabeçalhos. Estes são metadados que descrevem a resposta HTTP, mas não são visíveis no corpo 
 da resposta. O objeto Response PSR 7, fornece vários métodos para inspecionar e manipular seus cabeçalhos.
 
-+ Você pode obter todos os cabeçalhos de resposta HTTP como uma matriz associativa usando o método `getHeaders()`. 
+- Você pode obter todos os cabeçalhos de resposta HTTP como uma matriz associativa usando o método `getHeaders()`. 
 As chaves da matriz associativa resultante são os nomes de cabeçalho e seus valores
 
 ```
@@ -104,16 +108,16 @@ foreach ($headers as $name => $values) {
 
 <br>
 
-+ Você pode obter os valores de um único cabeçalho. Isso retorna uma matriz de valores para o nome do cabeçalho dado. 
+- Você pode obter os valores de um único cabeçalho. Isso retorna uma matriz de valores para o nome do cabeçalho dado. 
 Lembre-se, um único cabeçalho HTTP pode ter mais de um valor!
 
 ```
-    $headerValueArray = $response->getHeader('Access-Control-Allow-Origin');
+$headerValueArray = $response->getHeader('Access-Control-Allow-Origin');
 ```
 
 <br>
 
-+ Você pode testar a presença de um cabeçalho com o hasHeader($name).
+- Você pode testar a presença de um cabeçalho com o hasHeader($name).
 
 ```
 if ($response->hasHeader('Access-Control-Allow-Origin')) {
@@ -123,7 +127,7 @@ if ($response->hasHeader('Access-Control-Allow-Origin')) {
 
 <br>
 
-+ Você pode definir um valor de cabeçalho com o método `withHeader($name, $value)` do objeto Response do PSR 7.
+- Você pode definir um valor de cabeçalho com o método `withHeader($name, $value)` do objeto Response do PSR 7.
 
 ```
 $newResponse = $oldResponse->withHeader('Content-type', 'application/json');
@@ -135,7 +139,7 @@ $newResponse = $oldResponse->withHeader('Content-type', 'application/json');
 
 <br>
 
-+ Você pode anexar um valor de cabeçalho com o método `withAddedHeader($name, $value)` do objeto Response do PSR 7 .
+- Você pode anexar um valor de cabeçalho com o método `withAddedHeader($name, $value)` do objeto Response do PSR 7 .
 
 ```
 $newResponse = $oldResponse->withAddedHeader('Allow', 'PUT');
@@ -148,7 +152,7 @@ $newResponse = $oldResponse->withAddedHeader('Allow', 'PUT');
 
 <br>
 
-+ Você pode remover um cabeçalho com o método `withoutHeader($name)` do objeto Response PSR 7.
+- Você pode remover um cabeçalho com o método `withoutHeader($name)` do objeto Response PSR 7.
 
 ```
 $newResponse = $oldResponse->withoutHeader('Allow');
@@ -163,18 +167,18 @@ corpo como uma instância de \Psr\Http\Message\StreamInterface. Você pode obter
 de resposta HTTP através do método `getBody()` do objeto Response PSR 7 . O método `getBody()` é preferível se o comprimento 
 da sáida de resposta HTTP for desconhecido ou muito grande para a memória disponível.
 
-````
+```
 $body = $response->getBody();
-````
+```
 
 <br>
 
 Após obter o corpo da requisição você escrever e personalizar sua resposta usando o método `write()` como no exemplo:
 
-````
+```
 $body = $response->getBody();
 $body->write('Hello');
-````
+```
 
 <br>
 
@@ -188,17 +192,17 @@ personalizado `withJson($data, $status, $encodingOptions) para ajudar a simplifi
 
 Na forma mais simples, os dados JSON podem ser retornados com um código de status HTTP padrão de 200.
 
-````
+```
 $data = array('name' => 'Bob', 'age' => 40);
 $newResponse = $oldResponse->withJson($data);
-````
+```
 
 <br>
 
 Também podemos retornar dados JSON com um código de status HTTP personalizado.
 
-````
+```
 $data = array('name' => 'Rob', 'age' => 40);
 $newResponse = $oldResponse->withJson($data, 201);
-````
+```
 

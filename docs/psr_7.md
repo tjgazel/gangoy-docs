@@ -84,7 +84,9 @@ Toda solicitação HTTP possui um método que normalmente é um dos abaixo:
 
 Você pode obter o método da requisição HTTP fazendo o seguinte: 
     
-    $method = $request->getMethod();
+``` 
+$method = $request->getMethod();
+```
     
 A implementação do PSR 7 também fornece esses métodos que retornam true ou false.
 
@@ -121,7 +123,9 @@ Toda solicitação HTTP possui um URI que identifica a rota solicitada ao aplica
 
 Você pode capturar o objeto URI do objeto Request PSR 7 da seguinte forma:
 
-    $uri = $request->getUri();
+```
+$uri = $request->getUri();
+```
     
 O objeto URI é em sí um objeto que fornece os seguintes métodos para inspecionar as partes de uma URL HTTP:
 
@@ -150,23 +154,27 @@ no corpo da solicitação. O objeto Request PSR 7 fornece diversos métodos para
 Você pode obter todos os cabeçalhos de solicitação HTTP como uma matriz associativa usando o método `getHeaders()`. 
 As chaves da matriz associativa resultante são os nomes de cabeçalho e seus valores
 
-    $headers = $request->getHeaders();
-    foreach ($headers as $name => $values) {
-        echo $name . ": " . implode(", ", $values);
-    }
+```
+$headers = $request->getHeaders();
+foreach ($headers as $name => $values) {
+    echo $name . ": " . implode(", ", $values);
+}
+```
 
 Você pode obter os valores de um único cabeçalho. Isso retorna uma matriz de valores para o nome do cabeçalho dado. 
 Lembre-se, um único cabeçalho HTTP pode ter mais de um valor!
 
-    $headerValueArray = $request->getHeader('Accept');
-
+```
+$headerValueArray = $request->getHeader('Accept');
+```
 
 Você pode testar a presença de um cabeçalho com o hasHeader($name).
 
-    if ($request->hasHeader('Accept')) {
-        // Do something
-    }
-
+```
+if ($request->hasHeader('Accept')) {
+    // Do something
+}
+```
 <br>
 
 <a name="request_body"></a>
@@ -175,7 +183,9 @@ Toda solicitação HTTP possui um corpo (Body). Se você está criando um aplica
 pode usar o método getParsedBody() do objeto Request PSR 7 para analisar o corpo de solicitação HTTP em um formato 
 PHP nativo. Gangoy pode analisar dados JSON, XML e URL-enconded.
 
-    $parsedBody = $request->getParsedBody();
+```
+$parsedBody = $request->getParsedBody();
+```
 
 - Request JSON são convertidos em matrizes com json_decode($input, true).
 - Request XML são convertidos em um SimpleXMLElement com simplexml_load_string($input).
@@ -190,7 +200,9 @@ de \Psr\Http\Message\StreamInterface. Você pode obter a instância StreamInterf
 do objeto Request do PSR 7 . O método getBody() é preferível se o tamanho da solicitação HTTP recebida for desconhecido 
 ou muito grande para a memória disponível.
 
-    $body = $request->getBody();
+```
+$body = $request->getBody();
+```
 
 <br>
 
@@ -198,7 +210,9 @@ ou muito grande para a memória disponível.
 Os carregamentos de arquivos $_FILES estão disponíveis a partir do método `getUploadedFiles()` do objeto Request . Isso 
 retorna uma matriz pelo nome do elemento <input>.
 
-    $files = $request->getUploadedFiles();
+```
+$files = $request->getUploadedFiles();
+```
 
 Cada objeto na matriz em $files é uma instância \Psr\Http\Message\UploadedFileInterface e é compatível com os seguintes métodos:
 
@@ -216,7 +230,9 @@ Cada objeto na matriz em $files é uma instância \Psr\Http\Message\UploadedFile
 #### Content Type
 Você pode buscar o Content Type com o método `getContentType()`. Isso retorna o valor do Content-Type do cabeçalho fornecido pelo cliente HTTP.
 
-    $contentType = $request->getContentType();
+```
+$contentType = $request->getContentType();
+```
 
 <br>
 
@@ -224,7 +240,9 @@ Você pode buscar o Content Type com o método `getContentType()`. Isso retorna 
 Você pode não querer o Content-Type completo . E se, em vez disso, você quer apenas o tipo de mídia? Você pode 
 buscar o tipo de mídia com o método `getMediaType()`.
 
-    $mediaType = $request->getMediaType();
+```
+$mediaType = $request->getMediaType();
+```
 
 <br>
 
@@ -238,7 +256,9 @@ Para recuperar o Charset de um Request use:
 #### Content Length
 Para recuperar o tamanho de um Request use:
 
-    $length = $request->getContentLength();
+```
+$length = $request->getContentLength();
+```
 
 <br>
 <br>
@@ -251,7 +271,7 @@ e manipular o [status](#response_status) de resposta HTTP, [headers](#response_h
 <br>
 
 #### Como obter o objeto Request
-+ O objeto Response PSR 7 é injetado em suas rotas como o segundo argumento para o 
+- O objeto Response PSR 7 é injetado em suas rotas como o segundo argumento para o 
 retorno de chamada da rota (callback) ou no método do seu controller, exemplo:
 
 ```
@@ -321,14 +341,18 @@ Toda resposta HTTP possui um [código de status numérico](https://www.w3.org/Pr
 O código de status identifica o tipo de resposta HTTP a ser retornado ao cliente. O código de status padrão do objeto 
 de Response PSR 7 é 200(OK). Você pode obter o código de status do objeto Response PSR 7 com o método `getStatusCode()`.
 
-    $status = $response->getStatusCode();
+```
+$status = $response->getStatusCode();
+```
 
 <br>
 
 Você pode pegar um objeto Response PSR 7 e atribuir um novo código de status:
 
-    $newResponse = $response->withStatus(302);
-    return $newResponse;
+```
+$newResponse = $response->withStatus(302);
+return $newResponse;
+```
 
 <br>
 
@@ -337,7 +361,7 @@ Você pode pegar um objeto Response PSR 7 e atribuir um novo código de status:
 Toda resposta HTTP possui cabeçalhos. Estes são metadados que descrevem a resposta HTTP, mas não são visíveis no corpo 
 da resposta. O objeto Response PSR 7, fornece vários métodos para inspecionar e manipular seus cabeçalhos.
 
-+ Você pode obter todos os cabeçalhos de resposta HTTP como uma matriz associativa usando o método `getHeaders()`. 
+- Você pode obter todos os cabeçalhos de resposta HTTP como uma matriz associativa usando o método `getHeaders()`. 
 As chaves da matriz associativa resultante são os nomes de cabeçalho e seus valores
 
 ```
@@ -353,12 +377,12 @@ foreach ($headers as $name => $values) {
 Lembre-se, um único cabeçalho HTTP pode ter mais de um valor!
 
 ```
-    $headerValueArray = $response->getHeader('Access-Control-Allow-Origin');
+$headerValueArray = $response->getHeader('Access-Control-Allow-Origin');
 ```
 
 <br>
 
-+ Você pode testar a presença de um cabeçalho com o hasHeader($name).
+- Você pode testar a presença de um cabeçalho com o hasHeader($name).
 
 ```
 if ($response->hasHeader('Access-Control-Allow-Origin')) {
@@ -368,7 +392,7 @@ if ($response->hasHeader('Access-Control-Allow-Origin')) {
 
 <br>
 
-+ Você pode definir um valor de cabeçalho com o método `withHeader($name, $value)` do objeto Response do PSR 7.
+- Você pode definir um valor de cabeçalho com o método `withHeader($name, $value)` do objeto Response do PSR 7.
 
 ```
 $newResponse = $oldResponse->withHeader('Content-type', 'application/json');
@@ -380,7 +404,7 @@ $newResponse = $oldResponse->withHeader('Content-type', 'application/json');
 
 <br>
 
-+ Você pode anexar um valor de cabeçalho com o método `withAddedHeader($name, $value)` do objeto Response do PSR 7 .
+- Você pode anexar um valor de cabeçalho com o método `withAddedHeader($name, $value)` do objeto Response do PSR 7 .
 
 ```
 $newResponse = $oldResponse->withAddedHeader('Allow', 'PUT');
@@ -393,7 +417,7 @@ $newResponse = $oldResponse->withAddedHeader('Allow', 'PUT');
 
 <br>
 
-+ Você pode remover um cabeçalho com o método `withoutHeader($name)` do objeto Response PSR 7.
+- Você pode remover um cabeçalho com o método `withoutHeader($name)` do objeto Response PSR 7.
 
 ```
 $newResponse = $oldResponse->withoutHeader('Allow');
@@ -408,18 +432,18 @@ corpo como uma instância de \Psr\Http\Message\StreamInterface. Você pode obter
 de resposta HTTP através do método `getBody()` do objeto Response PSR 7 . O método `getBody()` é preferível se o comprimento 
 da sáida de resposta HTTP for desconhecido ou muito grande para a memória disponível.
 
-````
+```
 $body = $response->getBody();
-````
+```
 
 <br>
 
 Após obter o corpo da requisição você escrever e personalizar sua resposta usando o método `write()` como no exemplo:
 
-````
+```
 $body = $response->getBody();
 $body->write('Hello');
-````
+```
 
 <br>
 
@@ -433,18 +457,18 @@ personalizado `withJson($data, $status, $encodingOptions) para ajudar a simplifi
 
 Na forma mais simples, os dados JSON podem ser retornados com um código de status HTTP padrão de 200.
 
-````
+```
 $data = array('name' => 'Bob', 'age' => 40);
 $newResponse = $oldResponse->withJson($data);
-````
+```
 
 <br>
 
 Também podemos retornar dados JSON com um código de status HTTP personalizado.
 
-````
+```
 $data = array('name' => 'Rob', 'age' => 40);
 $newResponse = $oldResponse->withJson($data, 201);
-````
+```
 
 

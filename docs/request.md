@@ -83,8 +83,10 @@ Toda solicitação HTTP possui um método que normalmente é um dos abaixo:
 - OPTIONS
 
 Você pode obter o método da requisição HTTP fazendo o seguinte: 
-    
-    $method = $request->getMethod();
+
+```   
+$method = $request->getMethod();
+```
     
 A implementação do PSR 7 também fornece esses métodos que retornam true ou false.
 
@@ -121,7 +123,9 @@ Toda solicitação HTTP possui um URI que identifica a rota solicitada ao aplica
 
 Você pode capturar o objeto URI do objeto Request PSR 7 da seguinte forma:
 
-    $uri = $request->getUri();
+```
+$uri = $request->getUri();
+```
     
 O objeto URI é em sí um objeto que fornece os seguintes métodos para inspecionar as partes de uma URL HTTP:
 
@@ -150,22 +154,27 @@ no corpo da solicitação. O objeto Request PSR 7 fornece diversos métodos para
 Você pode obter todos os cabeçalhos de solicitação HTTP como uma matriz associativa usando o método `getHeaders()`. 
 As chaves da matriz associativa resultante são os nomes de cabeçalho e seus valores
 
-    $headers = $request->getHeaders();
-    foreach ($headers as $name => $values) {
-        echo $name . ": " . implode(", ", $values);
-    }
+```
+$headers = $request->getHeaders();
+foreach ($headers as $name => $values) {
+    echo $name . ": " . implode(", ", $values);
+}
+```
 
 Você pode obter os valores de um único cabeçalho. Isso retorna uma matriz de valores para o nome do cabeçalho dado. 
 Lembre-se, um único cabeçalho HTTP pode ter mais de um valor!
 
-    $headerValueArray = $request->getHeader('Accept');
-
+```
+$headerValueArray = $request->getHeader('Accept');
+```
 
 Você pode testar a presença de um cabeçalho com o hasHeader($name).
 
-    if ($request->hasHeader('Accept')) {
-        // Do something
-    }
+```
+if ($request->hasHeader('Accept')) {
+    // Do something
+}
+```
 
 <br>
 
@@ -175,7 +184,9 @@ Toda solicitação HTTP possui um corpo (Body). Se você está criando um aplica
 pode usar o método getParsedBody() do objeto Request PSR 7 para analisar o corpo de solicitação HTTP em um formato 
 PHP nativo. Gangoy pode analisar dados JSON, XML e URL-enconded.
 
-    $parsedBody = $request->getParsedBody();
+```
+$parsedBody = $request->getParsedBody();
+```
 
 - Request JSON são convertidos em matrizes com json_decode($input, true).
 - Request XML são convertidos em um SimpleXMLElement com simplexml_load_string($input).
@@ -190,7 +201,9 @@ de \Psr\Http\Message\StreamInterface. Você pode obter a instância StreamInterf
 do objeto Request do PSR 7 . O método getBody() é preferível se o tamanho da solicitação HTTP recebida for desconhecido 
 ou muito grande para a memória disponível.
 
-    $body = $request->getBody();
+```
+$body = $request->getBody();
+```
 
 <br>
 
@@ -198,7 +211,9 @@ ou muito grande para a memória disponível.
 Os carregamentos de arquivos $_FILES estão disponíveis a partir do método `getUploadedFiles()` do objeto Request . Isso 
 retorna uma matriz pelo nome do elemento <input>.
 
-    $files = $request->getUploadedFiles();
+```
+$files = $request->getUploadedFiles();
+```
 
 Cada objeto na matriz em $files é uma instância \Psr\Http\Message\UploadedFileInterface e é compatível com os seguintes métodos:
 
@@ -216,7 +231,9 @@ Cada objeto na matriz em $files é uma instância \Psr\Http\Message\UploadedFile
 ### Content Type
 Você pode buscar o Content Type com o método `getContentType()`. Isso retorna o valor do Content-Type do cabeçalho fornecido pelo cliente HTTP.
 
-    $contentType = $request->getContentType();
+```
+$contentType = $request->getContentType();
+```
 
 <br>
 
@@ -224,18 +241,24 @@ Você pode buscar o Content Type com o método `getContentType()`. Isso retorna 
 Você pode não querer o Content-Type completo . E se, em vez disso, você quer apenas o tipo de mídia? Você pode 
 buscar o tipo de mídia com o método `getMediaType()`.
 
-    $mediaType = $request->getMediaType();
+```
+$mediaType = $request->getMediaType();
+```
 
 <br>
 
 ### Character Set
 Para recuperar o Charset de um Request use:
 
-    $charset = $request->getContentCharset();
+```
+$charset = $request->getContentCharset();
+```
 
 <br>
 
 ### Content Length
 Para recuperar o tamanho de um Request use:
 
-    $length = $request->getContentLength();
+```
+$length = $request->getContentLength();
+```
