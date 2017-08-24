@@ -1,6 +1,0 @@
-# Migrations
-
-
-<br>
-
-# Seeders

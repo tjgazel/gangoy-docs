@@ -1,4 +1,4 @@
-# Controllers
+## Controllers
 O controllers da aplicação devem ser criados dentro do diretório `app/Controllers` e extender ao 
 TJG\Gangoy\Http\Controller\BaseController como indicado:
 

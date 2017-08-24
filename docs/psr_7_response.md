@@ -1,11 +1,11 @@
-# Response
+## Response
 As rotas e o middleware da aplicação recebem um objeto Response do PSR 7 que representa a resposta HTTP atual 
 a ser retornada ao cliente. O objeto de resposta implementa o `ResponseInterface` PSR 7 com o qual você pode inspecionar 
 e manipular o [status](#status) de resposta HTTP, [headers](#header) e [body](#body).
 
 <br>
 
-### Como obter o objeto Request
+### Como obter o objeto Response
 + O objeto Response PSR 7 é injetado em suas rotas como o segundo argumento para o 
 retorno de chamada da rota (callback) ou no método do seu controller, exemplo:
 
@@ -182,7 +182,7 @@ $body->write('Hello');
 
 <br>
 
-#### Retornando JSON
+### Retornando JSON
 O objeto Response que usamos em Gangoy Framework, herda as caracterísiticas do Slim. Com isso, ele possui um método 
 personalizado `withJson($data, $status, $encodingOptions)` para ajudar a simplificar o processo de retorno de dados JSON.
 

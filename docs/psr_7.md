@@ -1,4 +1,4 @@
-# Request
+## Request
 As rotas e o middleware da aplicação recebem um objeto Request da PSR 7 que representa a 
 solicitação HTTP atual recebida pelo seu servidor web. O objeto de solicitação implementa 
 o [PSR 7 ServerRequestInterface](http://www.php-fig.org/psr/psr-7/#3-2-1-psr-http-message-serverrequestinterface) 
@@ -6,7 +6,7 @@ com o qual você pode inspecionar e manipular o [método](#request_metodo) de so
 
 <br>
 
-##### Como obter o objeto Request
+#### Como obter o objeto Request
 O objeto Request PSR 7 é injetado em suas rotas como o primeiro argumento para o 
 retorno de chamada da rota (callback) ou no método do seu controller, exemplo:
 
@@ -71,7 +71,7 @@ class MyMiddleware implements MiddlewareInterface
 <br>
 
 <a name="request_metodo"></a>
-##### Métodos
+#### Métodos
 Toda solicitação HTTP possui um método que normalmente é um dos abaixo:
 
 - GET
@@ -112,7 +112,7 @@ Você pode buscar o método HTTP original (não anulado) com o método do objeto
 
 <br>
 
-##### URI
+#### URI
 Toda solicitação HTTP possui um URI que identifica a rota solicitada ao aplicativo. O URI tem várias partes:
 
 - Scheme (http or https)
@@ -147,7 +147,7 @@ Você também pode obter um único valor de parâmetro usando `getQueryParam($ke
 <br>
 
 <a name="request_header"></a>
-##### Headers
+#### Headers
 Toda solicitação HTTP possui cabeçalhos. Estes são metadados que descrevem a solicitação HTTP, mas não estão visíveis 
 no corpo da solicitação. O objeto Request PSR 7 fornece diversos métodos para inspecionar seus cabeçalhos.
 
@@ -178,7 +178,7 @@ if ($request->hasHeader('Accept')) {
 <br>
 
 <a name="request_body"></a>
-##### Body
+#### Body
 Toda solicitação HTTP possui um corpo (Body). Se você está criando um aplicativo que consome dados JSON ou XML, você 
 pode usar o método getParsedBody() do objeto Request PSR 7 para analisar o corpo de solicitação HTTP em um formato 
 PHP nativo. Gangoy pode analisar dados JSON, XML e URL-enconded.
@@ -206,7 +206,7 @@ $body = $request->getBody();
 
 <br>
 
-##### Uploaded Files
+#### Uploaded Files
 Os carregamentos de arquivos $_FILES estão disponíveis a partir do método `getUploadedFiles()` do objeto Request . Isso 
 retorna uma matriz pelo nome do elemento `<input>`.
 
@@ -227,7 +227,7 @@ Cada objeto na matriz em $files é uma instância \Psr\Http\Message\UploadedFile
 
 <br>
 
-##### Content Type
+#### Content Type
 Você pode buscar o Content Type com o método `getContentType()`. Isso retorna o valor do Content-Type do cabeçalho fornecido pelo cliente HTTP.
 
 ```
@@ -246,14 +246,14 @@ $mediaType = $request->getMediaType();
 
 <br>
 
-##### Character Set
+#### Character Set
 Para recuperar o Charset de um Request use:
 
     $charset = $request->getContentCharset();
 
 <br>
 
-##### Content Length
+#### Content Length
 Para recuperar o tamanho de um Request use:
 
 ```
@@ -263,14 +263,14 @@ $length = $request->getContentLength();
 <br>
 <br>
 
-# Response
+## Response
 As rotas e o middleware da aplicação recebem um objeto Response do PSR 7 que representa a resposta HTTP atual 
 a ser retornada ao cliente. O objeto de resposta implementa o `ResponseInterface` PSR 7 com o qual você pode inspecionar 
 e manipular o [status](#response_status) de resposta HTTP, [headers](#response_header) e [body](#response_body).
 
 <br>
 
-##### Como obter o objeto Response
+#### Como obter o objeto Response
 - O objeto Response PSR 7 é injetado em suas rotas como o segundo argumento para o 
 retorno de chamada da rota (callback) ou no método do seu controller, exemplo:
 
@@ -336,7 +336,7 @@ class MyMiddleware implements MiddlewareInterface
 <br>
 
 <a name="response_status"></a>
-##### Status
+#### Status
 Toda resposta HTTP possui um [código de status numérico](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) . 
 O código de status identifica o tipo de resposta HTTP a ser retornado ao cliente. O código de status padrão do objeto 
 de Response PSR 7 é 200(OK). Você pode obter o código de status do objeto Response PSR 7 com o método `getStatusCode()`.
@@ -357,7 +357,7 @@ return $newResponse;
 <br>
 
 <a name="response_header"></a>
-##### Header
+#### Header
 Toda resposta HTTP possui cabeçalhos. Estes são metadados que descrevem a resposta HTTP, mas não são visíveis no corpo 
 da resposta. O objeto Response PSR 7, fornece vários métodos para inspecionar e manipular seus cabeçalhos.
 
@@ -426,7 +426,7 @@ $newResponse = $oldResponse->withoutHeader('Allow');
 <br>
 
 <a name="response_body"></a>
-##### Body
+#### Body
 Uma resposta HTTP normalmente tem um corpo. Assim como o objeto Request PSR 7, o objeto Response PSR 7 implementa o 
 corpo como uma instância de \Psr\Http\Message\StreamInterface. Você pode obter a instância do StreamInterface com o corpo 
 de resposta HTTP através do método `getBody()` do objeto Response PSR 7 . O método `getBody()` é preferível se o comprimento 
@@ -447,7 +447,7 @@ $body->write('Hello');
 
 <br>
 
-##### Retornando JSON
+#### Retornando JSON
 O objeto Response que usamos em Gangoy Framework, herda as caracterísiticas do Slim. Com isso, ele possui um método 
 personalizado `withJson($data, $status, $encodingOptions)` para ajudar a simplificar o processo de retorno de dados JSON.
 

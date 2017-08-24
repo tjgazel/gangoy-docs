@@ -1,4 +1,4 @@
-# Rotas
+## Rotas
 O sistema de rotas trabalha com os verbos HTTP `GET, POST, PUT, PATCH, DELETE, OPTIONS`. 
 Suas rotas devem ser definidas no arquivo `routes.php` que se encontra no diretŕio app (app/routes.php).
 

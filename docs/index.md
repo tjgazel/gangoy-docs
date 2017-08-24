@@ -25,13 +25,13 @@ ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e
 
 <br>
 
-# Requisitos de sistema
+## Requisitos de sistema
 - Web server with URL rewriting
 - PHP 5.6.9 or newer
 
 <br>
 
-# Instalação
+## Instalação
 Utilizando [Composer](https://getcomposer.org/) Create-Project
 
     composer create-project tjg/gangoy seu_projeto
@@ -45,7 +45,7 @@ Abra o navegador e acesse `localhost:8080`
 <br>
 
 <a name="agradecimentos"></a>
-# Agradecimentos
+## Agradecimentos
 Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez delas foi possível chegarmos a este trabalho.
 
 - [Slim Framework](https://www.slimframework.com/)
@@ -62,5 +62,5 @@ Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez d
 
 <br>
 
-# License
+## License
 The `Gangoy Framework` is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
