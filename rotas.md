@@ -9,7 +9,7 @@ Suas rotas devem ser definidas no arquivo `routes.php` que se encontra no diret�
 Lida somente com solicitações HTTP do tipo GET e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ``` 
 $app->get('/books/{id}', function ($request, $response, $args) {
@@ -23,7 +23,7 @@ $app->get('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```    
 $app->post('/books', function ($request, $response, $args) {
@@ -37,7 +37,7 @@ $app->post('/books', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```   
 $app->put('/books/{id}', function ($request, $response, $args) {
@@ -51,7 +51,7 @@ $app->put('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```   
 $app->delete('/books/{id}', function ($request, $response, $args) {
@@ -65,7 +65,7 @@ $app->delete('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```    
 $app->patch('/books/{id}', function ($request, $response, $args) {
@@ -79,7 +79,7 @@ $app->patch('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```    
 $app->options('/books/{id}', function ($request, $response, $args) {
@@ -93,7 +93,7 @@ $app->options('/books/{id}', function ($request, $response, $args) {
 Você pode adicionar uma rota que manipule todos os métodos de solicitação HTTP. Ele aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (poder uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```   
 $app->any('/books/[{id}]', function ($request, $response, $args) {
@@ -110,7 +110,7 @@ da função. Ele aceita 3 argumentos:
 
 1 - Array de métodos HTTP.<br>
 2 - Pattern (caminho e parâmetros opcionais).<br>
-3 - [Callback](#callback) (poder uma função ou um controller).
+3 - [Callback](#callback) (pode ser uma função ou um controller).
 
 ```   
 $app->map(['GET', 'POST'], '/books', function ($request, $response, $args) {
@@ -222,18 +222,18 @@ Por padrão, ele aceita três argumentos.
 
 - **[Request](request.md)** O primeiro argumento é um objeto Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
 - **[Response](response.md)** O segundo argumento é um objeto Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
-- **Arguments** O terceiro argumento é uma matriz assiciativa que contém os valores dos parâmetros de rota.
+- **Arguments** O terceiro argumento é uma matriz associativa que contém os valores dos parâmetros de rota.
 
 [Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
 
 #### Exemplo com um controller
 
-`route.php`
+route.php
 ```
 $app->get('/', '\App\Controllers\HomeController:index')->setName('home');
 ```
 
-`HomeController.php`
+HomeController.php
 ```
 <?php
 
