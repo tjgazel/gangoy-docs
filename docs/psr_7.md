@@ -270,7 +270,7 @@ e manipular o [status](#response_status) de resposta HTTP, [headers](#response_h
 
 <br>
 
-##### Como obter o objeto Request
+##### Como obter o objeto Response
 - O objeto Response PSR 7 é injetado em suas rotas como o segundo argumento para o 
 retorno de chamada da rota (callback) ou no método do seu controller, exemplo:
 
