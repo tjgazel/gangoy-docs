@@ -2,7 +2,7 @@
 As rotas e o middleware da aplicação recebem um objeto Request da PSR 7 que representa a 
 solicitação HTTP atual recebida pelo seu servidor web. O objeto de solicitação implementa 
 o [PSR 7 ServerRequestInterface](http://www.php-fig.org/psr/psr-7/#3-2-1-psr-http-message-serverrequestinterface) 
-com o qual você pode inspecionar e manipular o [método](#metodo) de solicitação HTTP, [header](#header) e [body](#body).
+com o qual você pode inspecionar e manipular o [método](#request_metodo) de solicitação HTTP, [header](#request_header) e [body](#request_body).
 
 <br>
 
@@ -70,7 +70,7 @@ class MyMiddleware implements MiddlewareInterface
 
 <br>
 
-<a name="metodo"></a>
+<a name="request_metodo"></a>
 #### Métodos
 Toda solicitação HTTP possui um método que normalmente é um dos abaixo:
 
@@ -142,7 +142,7 @@ Você também pode obter um único valor de parâmetro usando `getQueryParam($ke
 
 <br>
 
-<a name="header"></a>
+<a name="request_header"></a>
 #### Headers
 Toda solicitação HTTP possui cabeçalhos. Estes são metadados que descrevem a solicitação HTTP, mas não estão visíveis 
 no corpo da solicitação. O objeto Request PSR 7 fornece diversos métodos para inspecionar seus cabeçalhos.
@@ -169,7 +169,7 @@ Você pode testar a presença de um cabeçalho com o hasHeader($name).
 
 <br>
 
-<a name="body"></a>
+<a name="request_body"></a>
 #### Body
 Toda solicitação HTTP possui um corpo (Body). Se você está criando um aplicativo que consome dados JSON ou XML, você 
 pode usar o método getParsedBody() do objeto Request PSR 7 para analisar o corpo de solicitação HTTP em um formato 
@@ -246,7 +246,7 @@ Para recuperar o tamanho de um Request use:
 # Response
 As rotas e o middleware da aplicação recebem um objeto Response do PSR 7 que representa a resposta HTTP atual 
 a ser retornada ao cliente. O objeto de resposta implementa o `ResponseInterface` PSR 7 com o qual você pode inspecionar 
-e manipular o [status](#status) de resposta HTTP, [headers](#header) e [body](#status).
+e manipular o [status](#response_status) de resposta HTTP, [headers](#response_header) e [body](#response_body).
 
 <br>
 
@@ -315,7 +315,7 @@ class MyMiddleware implements MiddlewareInterface
 
 <br>
 
-<a name="status"></a>
+<a name="response_status"></a>
 #### Status
 Toda resposta HTTP possui um [código de status numérico](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) . 
 O código de status identifica o tipo de resposta HTTP a ser retornado ao cliente. O código de status padrão do objeto 
@@ -332,7 +332,7 @@ Você pode pegar um objeto Response PSR 7 e atribuir um novo código de status:
 
 <br>
 
-<a name="header"></a>
+<a name="response_header"></a>
 #### Header
 Toda resposta HTTP possui cabeçalhos. Estes são metadados que descrevem a resposta HTTP, mas não são visíveis no corpo 
 da resposta. O objeto Response PSR 7, fornece vários métodos para inspecionar e manipular seus cabeçalhos.
@@ -401,7 +401,7 @@ $newResponse = $oldResponse->withoutHeader('Allow');
 
 <br>
 
-<a name="body"></a>
+<a name="response_body"></a>
 #### Body
 Uma resposta HTTP normalmente tem um corpo. Assim como o objeto Request PSR 7, o objeto Response PSR 7 implementa o 
 corpo como uma instância de \Psr\Http\Message\StreamInterface. Você pode obter a instância do StreamInterface com o corpo 
