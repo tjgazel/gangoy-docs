@@ -48,6 +48,7 @@ Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez d
 - [Slim Framework Twig View](https://github.com/slimphp/Twig-View)
 - [Twig](https://twig.symfony.com/doc/1.x/)
 - [Laravel - Illuminate Database package](https://packagist.org/packages/illuminate/database)
+- [Laravel - Mix](https://laravel.com/docs/5.6/mix)
 - [Phinx](https://phinx.org/)
 - [Symfony console](https://github.com/symfony/console)
 - [PHP dotenv](https://github.com/vlucas/phpdotenv)

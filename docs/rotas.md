@@ -5,31 +5,30 @@ Suas rotas devem ser definidas nos arquivos `routes.php` correspondentes aos seu
 <br>
 
 ## Métodos disponíveis
-#### get()
+### get()
 Lida somente com solicitações HTTP do tipo GET e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-``` 
+```php
 $app->get('/books', function ($response) {
     return $response->getBody()->write('<h1>Hello World!</h1>');
 });
 ```
-``` 
+```php
 $app->get('/', ['\App\Controllers\DefaultController', 'index']);
-});
 ```
 
 <br>
  
-#### post()
+### post()
 Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```    
+```php    
 $app->post('/books', function ($request, $response) {
     $data = $request->getParsedBody()->getAll();
     // save
@@ -39,13 +38,13 @@ $app->post('/books', function ($request, $response) {
 
 <br>
 
-#### put()
+### put()
 Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```   
+```php   
 $app->put('/books/{id}', function ($request, $response, $id) {
     $data = $request->getParsedBody()->getAll();
     // update books identified by id param
@@ -55,13 +54,13 @@ $app->put('/books/{id}', function ($request, $response, $id) {
  
 <br>
    
-#### delete()
+### delete()
 Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```   
+```php   
 $app->delete('/books/{id}', function ($response, $id) {
     // Delete book identified by $id
 });
@@ -69,13 +68,13 @@ $app->delete('/books/{id}', function ($response, $id) {
 
 <br>
     
-#### patch()
+### patch()
 Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```    
+```php   
 $app->patch('/books/{id}', function ($response, $id) {
     // Apply changes to book identified by $id
 });
@@ -83,13 +82,13 @@ $app->patch('/books/{id}', function ($response, $id) {
 
 <br>
 
-#### options()
+### options()
 Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```    
+```php    
 $app->options('/books/{id}', function ($response) {
     // Return response headers
 });
@@ -97,13 +96,13 @@ $app->options('/books/{id}', function ($response) {
 
 <br>
     
-#### any()
+### any()
 Você pode adicionar uma rota que manipule todos os métodos de solicitação HTTP. Ele aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
 2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```   
+```php   
 $app->any('/books/[{id}]', function ($request, $response, $id) {
     // Apply changes to books or book identified by $id if specified.
     // To check which method is used: $request->getMethod();
@@ -112,7 +111,7 @@ $app->any('/books/[{id}]', function ($request, $response, $id) {
       
 <br>
 
-#### map()
+### map()
 Você pode adicionar uma rota que manipule os métodos de solicitação HTTP que forem declarados no primeiro argumento 
 da função. Ele aceita 3 argumentos:
 
@@ -120,7 +119,7 @@ da função. Ele aceita 3 argumentos:
 2 - Pattern (caminho e parâmetros opcionais).<br>
 3 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
-```   
+```php   
 $app->map(['GET', 'POST'], '/books', function ($request, $response) {
     // Create new book or list all books
 });
@@ -132,7 +131,7 @@ $app->map(['GET', 'POST'], '/books', function ($request, $response) {
 Parâmetros de rotas são muito simples, devem estar entre `{}`
 e podem ser recuperados como argumentos da função callback ou através do `$request->getAttribute('param_name'));`.
 
-``` 
+```php 
 $app->get('/hello/{name}', function ($request, $response, $name) {
     echo "Hello, " . $name;
 });
@@ -140,10 +139,10 @@ $app->get('/hello/{name}', function ($request, $response, $name) {
 
 <br>
 
-#### Parâmetros Opcionais
+### Parâmetros Opcionais
 Para tornar um parâmetro de rota opcional, envolva entre colchetes:
 
-```
+```php
 $app->get('/users[/{id}]', function ($request, $response, $id) {
     // responds to both `/users` and `/users/123`
     // but not to `/users/`
@@ -152,7 +151,7 @@ $app->get('/users[/{id}]', function ($request, $response, $id) {
        
 Múltiplos parâmetros opcionais são suportados por aninhamento:
 
-```
+```php
 $app->get('/news[/{year}[/{month}]]', function ($request, $response, $year, $month) {
     // responds to `/news`, `/news/2016` and `/news/2016/03`
 }); 
@@ -160,7 +159,7 @@ $app->get('/news[/{year}[/{month}]]', function ($request, $response, $year, $mon
 
 Para parâmetros opcionais "ilimitados", você pode fazer isso:
 
-```
+```php
 $app->get('/news[/{params:.*}]', function ($request, $response) {
     $params = explode('/', $request->getAttribute('params'));
 
@@ -170,12 +169,12 @@ $app->get('/news[/{params:.*}]', function ($request, $response) {
 
 <br>
     
-#### Parâmetros com expressões regulares
+### Parâmetros com expressões regulares
 Por padrão os parâmetros são escritos detro de {} e podem aceitar quaisquer valores. No entanto, também podem exigir que 
 uma URI coincida com uma expressão regular, caso contrário ela não é invocada. Este exemplo a rota requer um parâmetro
 com 1 ou mais dígitos:
 
-```
+```php
 $app->get('/users/{id:[0-9]+}', function ($request, $response, $id) {
     // Find user identified by $id
 });
@@ -186,7 +185,7 @@ $app->get('/users/{id:[0-9]+}', function ($request, $response, $id) {
 ## Rotas com nome
 As rotas da aplicação podem ser atribuídas um nome. Isso é útil para que você gere uma URL para sua rota.
 
-```
+```php
 $app->get('/user/create', function () {
     //
 })->setName('user.create');
@@ -194,7 +193,7 @@ $app->get('/user/create', function () {
 
 Você pode gerar uma URL para esta rota em uma view evitando erros de URI relativa:
 
-```
+```html
 <a href="{{ path_for('user.create') }}">Create new user</a>
 ```
 
@@ -204,7 +203,7 @@ Você pode gerar uma URL para esta rota em uma view evitando erros de URI relati
 Para ajudar a organizar rotas em grupos, gangoy fornece um group() método. O padrão de rota de cada grupo é precedido 
 das rotas ou grupos contidos nela, e todos os parâmetros são disponibilizados para as rotas aninhadas:
 
-```
+```php
 $app->group('/users/{id:[0-9]+}', function () use ($app) {
 
     $app->map(['GET', 'DELETE', 'PATCH', 'PUT'], '', function ($request, $response, $id) {
@@ -220,8 +219,7 @@ $app->group('/users/{id:[0-9]+}', function () use ($app) {
 ```
 <br>
 
-<a name="callback"></a>
-## Callback
+## <a name="callback"></a>Callback
 Cada método de roteamento descrito acima aceita uma rotina de retorno como seu argumento final. Esse argumento 
 pode ser uma função como demonstrado nos exemplos, mas nós construímos Gangoy framework pensando em um modelo MVC e 
 recomendamos o uso de um controller.
@@ -233,17 +231,17 @@ O callback aceita como argumentos os parâmetros de rota ou qualquer classe regi
 - **[Request](psr_7_request.md)** - Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
 - **[Response](psr_7_response.md)** - Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
 
-[Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
+    [Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
 
 #### Exemplo com um controller
 
 routes.php
-```
+```php
 $app->get('/', ['\App\Controllers\DefaultController', 'index'])->setName('home');
 ```
 
 DefaultController.php
-```
+```php
 <?php
 
 namespace App\Controllers;

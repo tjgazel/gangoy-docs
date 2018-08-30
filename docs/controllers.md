@@ -1,9 +1,10 @@
 # Controllers
+
 Controllers podem ser criados rapidamente através dos [Comandos de console](console.md).<br>
 Os controllers da aplicação devem ser criados dentro do diretório `Controllers` dos seus respectivos módulos e extender a classe 
 `Gangoy\Core\Http\Controller\AbstractController` ou `Gangoy\Core\Http\Controller\AbstractApiController` que são mais indicadas para criação de API Restful. 
 
-```
+```php
 <?php
 
 namespace App\Controllers;
@@ -21,7 +22,7 @@ class DefaultController extends AbstractController
 
 Então configure suas rotas para trabalhar com seus controllers.
 
-```
+```php
 $app->get('/', ['\App\Controllers\DefaultController', 'index'])->name('home');
 ```
 
@@ -33,7 +34,7 @@ que ele deve tomar para a referida rota.
 ## Injeção de dependências
 O [Container de Dependências](container.md) resolve automaticamente qualquer dependência que você precise utilizar nos métodos do controller desde que essa dependência tenha sido registrada no arquivo `config/dependencies.php` de qualquer módulo ativo e que seja passado sua assinatura. Veja o exemplo de como obter a instância da classe [Response](psr_7_response.md):
 
-```
+```php
 <?php
 
 namespace App\Controllers;
@@ -61,7 +62,7 @@ disponíveis no [Container de Dependências](container.md).
 ### **__construct**
 Por padrão a aplicação injeta automaticamente o [Container de Dependências](container.md) no contrutor de todo controller. Caso você precise implementar alguma lógica no construtor deve-se lembrar de adicionar o mesmo como atributo e passar para a classe pai. Exemplo:
 
-```
+```php
 <?php
 
 namespace App\Controllers;
@@ -104,14 +105,31 @@ class DefaultController extends AbstractController
 
 ### **Métodos**
 
-- **$this->redirect(Response $response, string $url, int $status = 307)**<br>
-Este método abstrai a forma um pouco verbosa de redirecionamento da [Response](psr_7_response.md) PSR 7.
-    - 1º argumento é o objeto de resposta PSR 7.<br>
-    - 2ª argumento é a url de redirecionamento.<br>
-    - 3º argumento é o http status code opcional.
+- **$this->redirect(Response $response, string $url, int $status = 307)** - Este método abstrai a forma um pouco verbosa de redirecionamento da [Response](psr_7_response.md) PSR 7.
 
-- **$this->pathFor(string $name, array $data = [], array $queryParams = [])**<br>
-Método que retorna a url da rota de acordo com o seu nome. Veja como dar nome às [rotas](rotas.md).
-    - 1º argumento é o nome da rota. Ex: 'auth.getLogin'.<br>
+    - 1º argumento é o objeto de resposta PSR 7.
+    - 2ª argumento é a url de redirecionamento.
+    - 3º argumento opcional. Http status code da resposta.
+    
+<br>
+
+- **$this->pathFor(string $name, array $data = [], array $queryParams = [])** - Método que retorna a url da rota de acordo com o seu nome. Veja como dar nome às [rotas](rotas.md).
+
+    - 1º argumento é o nome da rota. Ex: 'auth.getLogin'.
     - 2º argumento opcional. Array com as chaves e valores dos parâmetros da rota caso exista.
     - 3º argumento opcional. Array com chaves e valores caso queira passar uma query params.
+
+<br>
+
+- **$this->json(ResponseInterface $response, array $data, $status = 200)** - Este método abstrai a forma padrão de resposta em formato JSON da [Response](psr_7_response.md) PSR 7
+
+    - 1º argumento é o objeto de resposta PSR 7.
+    - 2º argumento é o array com os dados a serem enviados e convertidos para JSON.
+    - 3º argumento opcional. Http status code da resposta.
+
+<br>
+
+- **$this->moveUpLoadedFile(UploadedFileInterface $uploadedFile, $subDirectory = null)** - Método auxiliar que remove caracteres especiais do nome de um arquivo de upload e o normaliza para não causar confilto com outros já existentes e salva no diretório padrão `storage/public`. Veja mais informações no tutorial de [upload de arquivos]().
+
+    - 1º argumento é o objeto UploadedFileInterface PSR 7.
+    - 2º argumento opcional. Nome de um subdiretório para o armazenamento do arquivo.
