@@ -1,11 +1,9 @@
 # Sobre Gangoy Framework
-[![Latest Stable Version](https://poser.pugx.org/tjg/microframework/v/stable)](https://packagist.org/packages/tjg/microframework)
-[![Latest Unstable Version](https://poser.pugx.org/tjg/microframework/v/unstable)](https://packagist.org/packages/tjg/microframework)
-[![Total Downloads](https://poser.pugx.org/tjg/microframework/downloads)](https://packagist.org/packages/tjg/microframework)
-[![License](https://poser.pugx.org/tjg/microframework/license)](https://packagist.org/packages/tjg/microframework)
+[![Latest Stable Version](https://poser.pugx.org/tjgazel/gangoy-framework/v/stable)](https://packagist.org/packages/tjgazel/gangoy-framework)
+[![Total Downloads](https://poser.pugx.org/tjgazel/gangoy-framework/downloads)](https://packagist.org/packages/tjgazel/gangoy-framework)
+[![License](https://poser.pugx.org/tjgazel/gangoy-framework/license)](https://packagist.org/packages/tjgazel/gangoy-framework)
 
-**Gangoy** é um framework PHP desenvolvido sobre um conjunto de bibliotecas bem conhecidas na comunidade PHP. Sua base foi feita sobre o 
-esqueleto do [**Slim 3**](https://www.slimframework.com/ "Slim Framework") e segue as orientações das PSRs 
+**Gangoy** é um framework PHP desenvolvido com um conjunto de bibliotecas bem conhecidas na comunidade PHP e segue as orientações das PSRs 
 fornecidas pelo [**PHP-FIG**](http://www.php-fig.org/ "PHP-FIG").
 
 Usamos o conceito de Serviços/Container, tornando fácil adicionar novas funcionalidades ou desativar alguma que já vem como padrão.
@@ -20,23 +18,18 @@ ficando assim fácil e rápido iniciar um novo projeto seguindo boas práticas e
 ## Site do desenvolvedor
 [http://www.tjgweb.com.br](http://www.tjgweb.com.br "TJG Web")
 
-## Vídeo-aulas sobre o Framework
-[Acesse nosso canal no YouTube](https://www.youtube.com/tjgweb)
-
-<br>
-
 ## Requisitos de sistema
-- Web server with URL rewriting
-- PHP 5.6.9 or newer
+- Web server com URL rewriting ativo.
+- PHP 7.1 ou superior.
 
 <br>
 
 ## Instalação
 Utilizando [Composer](https://getcomposer.org/) Create-Project
 
-    composer create-project tjg/gangoy seu_projeto
+    composer create-project tjgazel/gangoy-framework nome_projeto
 
-Navegue com o terminal até o diretório raiz do projeto e digite o seguinte comando para iniciar o servidor.
+Acesse com o terminal até o diretório onde foi criado o projeto e digite o seguinte comando para iniciar o servidor de desenvolvimento.
 
 	php gangoy server
 	 
@@ -58,6 +51,10 @@ Agradecemos a todos os desenvolvedores das bibliotecas citadas abaixo. Atravez d
 - [Phinx](https://phinx.org/)
 - [Symfony console](https://github.com/symfony/console)
 - [PHP dotenv](https://github.com/vlucas/phpdotenv)
+- [PHP-DI](http://php-di.org/)
+- [Monolog](https://github.com/Seldaek/monolog)
+- [Zend - Event Manager](https://zendframework.github.io/zend-eventmanager/)
+- [Doctrine - Inflector](https://www.doctrine-project.org/projects/doctrine-inflector/en/1.3/index.html)
 
 
 <br>

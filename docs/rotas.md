@@ -1,6 +1,6 @@
-## Rotas
+# Rotas
 O sistema de rotas trabalha com os verbos HTTP `GET, POST, PUT, PATCH, DELETE, OPTIONS`. 
-Suas rotas devem ser definidas no arquivo `routes.php` que se encontra no diretŕio app (app/routes.php).
+Suas rotas devem ser definidas nos arquivos `routes.php` correspondentes aos seus respectivos módulos. Exemplo: `src/ModuloName/config/routes.php`
 
 <br>
 
@@ -9,11 +9,15 @@ Suas rotas devem ser definidas no arquivo `routes.php` que se encontra no diret�
 Lida somente com solicitações HTTP do tipo GET e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ``` 
-$app->get('/books/{id}', function ($request, $response, $args) {
-    // Show book identified by $args['id']
+$app->get('/books', function ($response) {
+    return $response->getBody()->write('<h1>Hello World!</h1>');
+});
+```
+``` 
+$app->get('/', ['\App\Controllers\DefaultController', 'index']);
 });
 ```
 
@@ -23,11 +27,13 @@ $app->get('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo POST e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```    
-$app->post('/books', function ($request, $response, $args) {
-    // Create new book
+$app->post('/books', function ($request, $response) {
+    $data = $request->getParsedBody()->getAll();
+    // save
+    return $this->redirect($response, '/books');
 });
 ```
 
@@ -37,11 +43,13 @@ $app->post('/books', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo PUT e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```   
-$app->put('/books/{id}', function ($request, $response, $args) {
-    // Update book identified by $args['id']
+$app->put('/books/{id}', function ($request, $response, $id) {
+    $data = $request->getParsedBody()->getAll();
+    // update books identified by id param
+    return $this->redirect($response, '/books');
 });
 ```
  
@@ -51,11 +59,11 @@ $app->put('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo DELETE e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```   
-$app->delete('/books/{id}', function ($request, $response, $args) {
-    // Delete book identified by $args['id']
+$app->delete('/books/{id}', function ($response, $id) {
+    // Delete book identified by $id
 });
 ```
 
@@ -65,11 +73,11 @@ $app->delete('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo PATCH e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```    
-$app->patch('/books/{id}', function ($request, $response, $args) {
-    // Apply changes to book identified by $args['id']
+$app->patch('/books/{id}', function ($response, $id) {
+    // Apply changes to book identified by $id
 });
 ```
 
@@ -79,10 +87,10 @@ $app->patch('/books/{id}', function ($request, $response, $args) {
 Lida somente com solicitações HTTP do tipo OPTIONS e aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```    
-$app->options('/books/{id}', function ($request, $response, $args) {
+$app->options('/books/{id}', function ($response) {
     // Return response headers
 });
 ```
@@ -93,11 +101,11 @@ $app->options('/books/{id}', function ($request, $response, $args) {
 Você pode adicionar uma rota que manipule todos os métodos de solicitação HTTP. Ele aceita 2 argumentos:
 
 1 - Pattern (caminho e parâmetros opcionais).<br>
-2 - [Callback](#callback) (pode ser uma função ou um controller).
+2 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```   
-$app->any('/books/[{id}]', function ($request, $response, $args) {
-    // Apply changes to books or book identified by $args['id'] if specified.
+$app->any('/books/[{id}]', function ($request, $response, $id) {
+    // Apply changes to books or book identified by $id if specified.
     // To check which method is used: $request->getMethod();
 });
 ```
@@ -110,10 +118,10 @@ da função. Ele aceita 3 argumentos:
 
 1 - Array de métodos HTTP.<br>
 2 - Pattern (caminho e parâmetros opcionais).<br>
-3 - [Callback](#callback) (pode ser uma função ou um controller).
+3 - [Callback](#callback) (pode ser uma função ou um array informando o controller e sua ação).
 
 ```   
-$app->map(['GET', 'POST'], '/books', function ($request, $response, $args) {
+$app->map(['GET', 'POST'], '/books', function ($request, $response) {
     // Create new book or list all books
 });
 ```
@@ -122,11 +130,11 @@ $app->map(['GET', 'POST'], '/books', function ($request, $response, $args) {
 
 ## Parâmetros
 Parâmetros de rotas são muito simples, devem estar entre `{}`
-e podem ser recuperados através da matrís `$args`.
+e podem ser recuperados como argumentos da função callback ou através do `$request->getAttribute('param_name'));`.
 
 ``` 
-$app->get('/hello/{name}', function ($request, $response, $args) {
-    echo "Hello, " . $args['name'];
+$app->get('/hello/{name}', function ($request, $response, $name) {
+    echo "Hello, " . $name;
 });
 ```
 
@@ -136,7 +144,7 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 Para tornar um parâmetro de rota opcional, envolva entre colchetes:
 
 ```
-$app->get('/users[/{id}]', function ($request, $response, $args) {
+$app->get('/users[/{id}]', function ($request, $response, $id) {
     // responds to both `/users` and `/users/123`
     // but not to `/users/`
 });
@@ -145,15 +153,15 @@ $app->get('/users[/{id}]', function ($request, $response, $args) {
 Múltiplos parâmetros opcionais são suportados por aninhamento:
 
 ```
-$app->get('/news[/{year}[/{month}]]', function ($request, $response, $args) {
-    // reponds to `/news`, `/news/2016` and `/news/2016/03`
+$app->get('/news[/{year}[/{month}]]', function ($request, $response, $year, $month) {
+    // responds to `/news`, `/news/2016` and `/news/2016/03`
 }); 
 ```    
 
 Para parâmetros opcionais "ilimitados", você pode fazer isso:
 
 ```
-$app->get('/news[/{params:.*}]', function ($request, $response, $args) {
+$app->get('/news[/{params:.*}]', function ($request, $response) {
     $params = explode('/', $request->getAttribute('params'));
 
     // $params is an array of all the optional segments
@@ -168,8 +176,8 @@ uma URI coincida com uma expressão regular, caso contrário ela não é invocad
 com 1 ou mais dígitos:
 
 ```
-$app->get('/users/{id:[0-9]+}', function ($request, $response, $args) {
-    // Find user identified by $args['id']
+$app->get('/users/{id:[0-9]+}', function ($request, $response, $id) {
+    // Find user identified by $id
 });
 ```
     
@@ -179,12 +187,12 @@ $app->get('/users/{id:[0-9]+}', function ($request, $response, $args) {
 As rotas da aplicação podem ser atribuídas um nome. Isso é útil para que você gere uma URL para sua rota.
 
 ```
-$app->get('/user/create', function ($request, $response, $args) {
+$app->get('/user/create', function () {
     //
 })->setName('user.create');
 ```
 
-Você pode gerar uma URL para esta rota em uma view como no exemplo, evitando erros de URI relativa:
+Você pode gerar uma URL para esta rota em uma view evitando erros de URI relativa:
 
 ```
 <a href="{{ path_for('user.create') }}">Create new user</a>
@@ -197,16 +205,16 @@ Para ajudar a organizar rotas em grupos, gangoy fornece um group() método. O pa
 das rotas ou grupos contidos nela, e todos os parâmetros são disponibilizados para as rotas aninhadas:
 
 ```
-$app->group('/users/{id:[0-9]+}', function () use($app) {
+$app->group('/users/{id:[0-9]+}', function () use ($app) {
 
-    $app->map(['GET', 'DELETE', 'PATCH', 'PUT'], '', function ($request, $response, $args) {
-        // Find, delete, patch or replace user identified by $args['id']
+    $app->map(['GET', 'DELETE', 'PATCH', 'PUT'], '', function ($request, $response, $id) {
+        // Find, delete, patch or replace user identified by $id
     })->setName('user');
     
-    $app->get('/reset-password', function ($request, $response, $args) {
+    $app->get('/reset-password', function ($request, $response, $id) {
         // Route for /users/{id:[0-9]+}/reset-password
-        // Reset the password for user identified by $args['id']
-    })->setName('user-password-reset');
+        // Reset the password for user identified by $id
+    })->setName('user.password-reset');
     
 });
 ```
@@ -216,36 +224,37 @@ $app->group('/users/{id:[0-9]+}', function () use($app) {
 ## Callback
 Cada método de roteamento descrito acima aceita uma rotina de retorno como seu argumento final. Esse argumento 
 pode ser uma função como demonstrado nos exemplos, mas nós construímos Gangoy framework pensando em um modelo MVC e 
-recomendamos o uso de um controller [(Saiba como usar um controller)](controllers.md).
+recomendamos o uso de um controller.
+ 
+- [(Saiba como usar um controller)](controllers.md).
 
-Por padrão, ele aceita três argumentos.
+O callback aceita como argumentos os parâmetros de rota ou qualquer classe registrada no conteiner de dependências, mas observe que para as classes serem injetadas automaticamente deve-se passar a assinatura na declaração assim como mostrado nos exemplos o uso do Request e Response.
 
-- **[Request](request.md)** O primeiro argumento é um objeto Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
-- **[Response](response.md)** O segundo argumento é um objeto Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
-- **Arguments** O terceiro argumento é uma matriz associativa que contém os valores dos parâmetros de rota.
+- **[Request](psr_7_request.md)** - Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
+- **[Response](psr_7_response.md)** - Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
 
 [Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
 
 #### Exemplo com um controller
 
-route.php
+routes.php
 ```
-$app->get('/', '\App\Controllers\HomeController:index')->setName('home');
+$app->get('/', ['\App\Controllers\DefaultController', 'index'])->setName('home');
 ```
 
-HomeController.php
+DefaultController.php
 ```
 <?php
 
 namespace App\Controllers;
 
-use TJG\Gangoy\Http\Controller\BaseController;
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+use Gangoy\Core\Http\AbstractController;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
-class HomeController extends BaseController
+class DefaultController extends AbstractController
 {
-    public function index(Request $request, Response $response, $args)
+    public function index(Request $request, Response $response)
     {
        return $response->getBody()->write("Hello");
     }
