@@ -228,8 +228,8 @@ recomendamos o uso de um controller.
 
 O callback aceita como argumentos os parâmetros de rota ou qualquer classe registrada no conteiner de dependências, mas observe que para as classes serem injetadas automaticamente deve-se passar a assinatura na declaração assim como mostrado nos exemplos o uso do Request e Response.
 
-- **[Request](psr_7_request.md)** - Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
-- **[Response](psr_7_response.md)** - Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
+- **[Request](request.md)** - Psr\Http\Message\ServerRequestInterface que representa a solicitação HTTP atual.
+- **[Response](response.md)** - Psr\Http\Message\ResponseInterface que representa a resposta HTTP atual.
 
     [Veja aqui os conceitos PSR 7](http://www.php-fig.org/psr/psr-7/)
 

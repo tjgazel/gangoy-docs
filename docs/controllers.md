@@ -32,7 +32,7 @@ que ele deve tomar para a referida rota.
 <br>
 
 ## Injeção de dependências
-O [Container de Dependências](container.md) resolve automaticamente qualquer dependência que você precise utilizar nos métodos do controller desde que essa dependência tenha sido registrada no arquivo `config/dependencies.php` de qualquer módulo ativo e que seja passado sua assinatura. Veja o exemplo de como obter a instância da classe [Response](psr_7_response.md):
+O [Container de Dependências](container.md) resolve automaticamente qualquer dependência que você precise utilizar nos métodos do controller desde que essa dependência tenha sido registrada no arquivo `config/dependencies.php` de qualquer módulo ativo e que seja passado sua assinatura. Veja o exemplo de como obter a instância da classe [Response](response.md):
 
 ```php
 <?php
@@ -105,7 +105,7 @@ class DefaultController extends AbstractController
 
 ### **Métodos**
 
-- **$this->redirect(Response $response, string $url, int $status = 307)** - Este método abstrai a forma um pouco verbosa de redirecionamento da [Response](psr_7_response.md) PSR 7.
+- **$this->redirect(Response $response, string $url, int $status = 307)** - Este método abstrai a forma um pouco verbosa de redirecionamento da [Response](response.md) PSR 7.
 
     - 1º argumento é o objeto de resposta PSR 7.
     - 2ª argumento é a url de redirecionamento.
@@ -121,7 +121,7 @@ class DefaultController extends AbstractController
 
 <br>
 
-- **$this->json(ResponseInterface $response, array $data, $status = 200)** - Este método abstrai a forma padrão de resposta em formato JSON da [Response](psr_7_response.md) PSR 7
+- **$this->json(ResponseInterface $response, array $data, $status = 200)** - Este método abstrai a forma padrão de resposta em formato JSON da [Response](response.md) PSR 7
 
     - 1º argumento é o objeto de resposta PSR 7.
     - 2º argumento é o array com os dados a serem enviados e convertidos para JSON.
