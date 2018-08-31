@@ -34,14 +34,14 @@ Se você já se sentiu confuso e sobrecarregado sobre começar a usar o Webpack 
     npm -v
     ```
 
-<br>
-
-- O último passo é instalar o Laravel Mix. Dentro do diretório raiz do projeto você vai encontrar o arquivo `package.json`. O arquivo padrão inclui tudo que você precisa para começar desenvolver seu frontend, incluindo o Laravel Mix. Pense nisso como seu arquivo que define as dependências do frontend assim como o composer define suas depêndencia do PHP. Fique livre para remover ou adicionar a seu gosto.<br>
+- O último passo é instalar o Laravel Mix. Dentro do diretório raiz do projeto você vai encontrar o arquivo `package.json`. O arquivo padrão inclui tudo que você precisa para começar desenvolver seu frontend, incluindo o Laravel Mix. Pense nisso como seu arquivo que define as dependências do frontend assim como o composer define suas depêndencia do PHP. Fique livre para remover ou adicionar a seu gosto.
 
     Para instalar use o comando:
+
     ```
     npm install
     ```
+
 <br>
 
 ### Utilização do Laravel Mix
@@ -68,4 +68,4 @@ npm run watch-poll
 
 <br>
 
->Essas são apenas informações básicas sobre essa fantástica ferramenta. Veja todos os detalhes na (documentação oficial do Laravel Mix](https://laravel.com/docs/5.6/mix).
+>Essas são apenas informações básicas sobre essa fantástica ferramenta. Veja todos os detalhes na [documentação oficial do Laravel Mix](https://laravel.com/docs/5.6/mix).
