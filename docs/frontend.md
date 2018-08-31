@@ -27,20 +27,20 @@ Se você já se sentiu confuso e sobrecarregado sobre começar a usar o Webpack 
 <br>
 
 ### Instalação e Configuração Laravel Mix
-- Antes de usar o Laravel Mix, primeiro você deve garantir que o [Node.js]() e o NPM estejam instalados em sua máquina. Digite os comandos abaixo, se houver retorno da versão sua instalação está ok, caso contrário você pode usar os instaladores do Node.js em sua [página de downloads](https://nodejs.org/en/download/).
+Antes de usar o Laravel Mix, primeiro você deve garantir que o [Node.js]() e o NPM estejam instalados em sua máquina. Digite os comandos abaixo, se houver retorno da versão sua instalação está ok, caso contrário você pode usar os instaladores do Node.js em sua [página de downloads](https://nodejs.org/en/download/).
 
-    ```
-    node -v
-    npm -v
-    ```
+```
+node -v
+npm -v
+```
 
-- O último passo é instalar o Laravel Mix. Dentro do diretório raiz do projeto você vai encontrar o arquivo `package.json`. O arquivo padrão inclui tudo que você precisa para começar desenvolver seu frontend, incluindo o Laravel Mix. Pense nisso como seu arquivo que define as dependências do frontend assim como o composer define suas depêndencia do PHP. Fique livre para remover ou adicionar a seu gosto.
+O último passo é instalar o Laravel Mix. Dentro do diretório raiz do projeto você vai encontrar o arquivo `package.json`. O arquivo padrão inclui tudo que você precisa para começar desenvolver seu frontend, incluindo o Laravel Mix. Pense nisso como seu arquivo que define as dependências do frontend assim como o composer define suas depêndencia do PHP. Fique livre para remover ou adicionar a seu gosto.
 
-    Para instalar use o comando:
+Para instalar use o comando:
 
-    ```
-    npm install
-    ```
+```
+npm install
+```
 
 <br>
 

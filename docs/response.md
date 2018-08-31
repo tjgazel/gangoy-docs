@@ -6,74 +6,74 @@ e manipular o [status](#status) de resposta HTTP, [headers](#header) e [body](#b
 <br>
 
 ## Como obter o objeto Response
-- O objeto Response PSR 7 pode ser injetado automaticamente pelo [Container de depêndencias](container.md) em suas rotas como argumento do
+O objeto Response PSR 7 pode ser injetado automaticamente pelo [Container de depêndencias](container.md) em suas rotas como argumento do
 callback ou nos métodos do seu controller, exemplo:
 
-    `src/App/config/routes.php`
+~~~php 
+// src/App/config/routes.php
 
-    ~~~php 
-    use \Psr\Http\Message\ResponseInterface as Response;
+use \Psr\Http\Message\ResponseInterface as Response;
 
-    $app->get('/foo', function (Response $response) {
-        // Use the PSR 7 $response object
-        return $response;
-    });
-    ~~~
+$app->get('/foo', function (Response $response) {
+    // Use the PSR 7 $response object
+    return $response;
+});
+~~~
 
-    `src/App/Controllers/DefaultController.php`
+~~~php
+// src/App/Controllers/DefaultController.php
 
-    ~~~php
-    <?php
+<?php
 
-    namespace App\Controllers;
+namespace App\Controllers;
 
-    use Gangoy\Core\Http\Controller\AbastractController;
-    use Psr\Http\Message\ServerRequestInterface as Request;
-    use Psr\Http\Message\ResponseInterface as Response;
+use Gangoy\Core\Http\Controller\AbastractController;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
-    class DefaultController extends AbastractController
+class DefaultController extends AbastractController
+{
+    public function index(Request $request, Response $response, $args)
     {
-        public function index(Request $request, Response $response, $args)
-        {
-            // Use the PSR 7 $response object        
-            return $response;
-        }
+        // Use the PSR 7 $response object        
+        return $response;
     }
-    ~~~
+}
+~~~
 
 <br>
 
-- O objeto Response PSR 7 também é injetado automaticamente pelo [Container de depêndencias](container.md) nos middlewares como o segundo argumento. 
+O objeto Response PSR 7 também é injetado automaticamente pelo [Container de depêndencias](container.md) nos middlewares como o segundo argumento. 
 Veja nosso exemplo de implementação:
 
-    `src/App/Middlewares/MyMiddleware.php`
+~~~php 
+// src/App/Middlewares/MyMiddleware.php
 
-    ~~~php 
-    <?php
+<?php
 
-    namespace App\Middlewares;
+namespace App\Middlewares;
 
-    use Gangoy\Core\Http\MiddlewareInterface;
-    use Psr\Http\Message\ServerRequestInterface as Request;
-    use Psr\Http\Message\ResponseInterface as Response;
+use Gangoy\Core\Http\MiddlewareInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
-    class MyMiddleware implements MiddlewareInterface
+class MyMiddleware implements MiddlewareInterface
+{
+    /**
+    * @param  Request   $request  PSR7 request
+    * @param  Response  $response PSR7 response
+    * @param  callable  $next     Next middleware
+    *
+    * @return mixed
+    */
+    public function __invoke(Request $request, Response $response, callable $next)
     {
-        /**
-        * @param  Request   $request  PSR7 request
-        * @param  Response  $response PSR7 response
-        * @param  callable  $next     Next middleware
-        *
-        * @return mixed
-        */
-        public function __invoke(Request $request, Response $response, callable $next)
-        {
-            // Use the PSR 7 $response object
-            
-            return $next($request, $response);
-        }
+        // Use the PSR 7 $response object
+        
+        return $next($request, $response);
     }
-    ~~~
+}
+~~~
 
 <br>
 
@@ -99,67 +99,67 @@ return $newResponse;
 Toda resposta HTTP possui cabeçalhos. Estes são metadados que descrevem a resposta HTTP, mas não são visíveis no corpo 
 da resposta. O objeto Response PSR 7, fornece vários métodos para inspecionar e manipular seus cabeçalhos.
 
-- Você pode obter todos os cabeçalhos de resposta HTTP como uma matriz associativa usando o método `getHeaders()`. 
+Você pode obter todos os cabeçalhos de resposta HTTP como uma matriz associativa usando o método `getHeaders()`. 
 As chaves da matriz associativa resultante são os nomes de cabeçalho e seus valores
 
-    ~~~php 
-    $headers = $response->getHeaders();
-    foreach ($headers as $name => $values) {
-        echo $name . ": " . implode(", ", $values);
-    }
-    ~~~
+~~~php 
+$headers = $response->getHeaders();
+foreach ($headers as $name => $values) {
+    echo $name . ": " . implode(", ", $values);
+}
+~~~
 
 <br>
 
-- Você pode obter os valores de um único cabeçalho. Isso retorna uma matriz de valores para o nome do cabeçalho dado. 
+Você pode obter os valores de um único cabeçalho. Isso retorna uma matriz de valores para o nome do cabeçalho dado. 
 Lembre-se, um único cabeçalho HTTP pode ter mais de um valor!
 
-    ~~~php 
-    $headerValueArray = $response->getHeader('Access-Control-Allow-Origin');
-    ~~~
+~~~php 
+$headerValueArray = $response->getHeader('Access-Control-Allow-Origin');
+~~~
 
 <br>
 
-- Você pode testar a presença de um cabeçalho com o hasHeader($name).
+Você pode testar a presença de um cabeçalho com o hasHeader($name).
 
-    ~~~php 
-    if ($response->hasHeader('Access-Control-Allow-Origin')) {
-        // Do something
-    }
-    ~~~
-
-<br>
-
-- Você pode definir um valor de cabeçalho com o método `withHeader($name, $value)` do objeto Response do PSR 7.
-
-    ~~~php  
-    $newResponse = $oldResponse->withHeader('Content-type', 'application/json');
-    ~~~
-
-    >**Lembrete** <br>
-    >O objeto Response é imutável. Esse método retorna uma cópia do objeto Response que possui o novo valor de cabeçalho. 
-    Esse método é destrutivo e ele substitui valores de cabeçalho existentes já associados ao mesmo nome de cabeçalho.
+~~~php 
+if ($response->hasHeader('Access-Control-Allow-Origin')) {
+    // Do something
+}
+~~~
 
 <br>
 
-- Você pode anexar um valor de cabeçalho com o método `withAddedHeader($name, $value)` do objeto Response do PSR 7 .
+Você pode definir um valor de cabeçalho com o método `withHeader($name, $value)` do objeto Response do PSR 7.
 
-    ~~~php 
-    $newResponse = $oldResponse->withAddedHeader('Allow', 'PUT');
-    ~~~
+~~~php  
+$newResponse = $oldResponse->withHeader('Content-type', 'application/json');
+~~~
 
-    >**Lembrete** <br>
-    >Ao contrário do método `withHeader()`, o método  `withAddedHeader()` adiciona o novo valor ao conjunto de valores que 
-    já existem para o mesmo nome de cabeçalho. O objeto Response é imutável. Esse método retorna uma cópia do objeto 
-    Response que possui o valor de cabeçalho anexado.
+>**Lembrete** <br>
+>O objeto Response é imutável. Esse método retorna uma cópia do objeto Response que possui o novo valor de cabeçalho. 
+Esse método é destrutivo e ele substitui valores de cabeçalho existentes já associados ao mesmo nome de cabeçalho.
 
 <br>
 
-- Você pode remover um cabeçalho com o método `withoutHeader($name)` do objeto Response PSR 7.
+Você pode anexar um valor de cabeçalho com o método `withAddedHeader($name, $value)` do objeto Response do PSR 7 .
 
-    ~~~php 
-    $newResponse = $oldResponse->withoutHeader('Allow');
-    ~~~
+~~~php 
+$newResponse = $oldResponse->withAddedHeader('Allow', 'PUT');
+~~~
+
+>**Lembrete** <br>
+>Ao contrário do método `withHeader()`, o método  `withAddedHeader()` adiciona o novo valor ao conjunto de valores que 
+já existem para o mesmo nome de cabeçalho. O objeto Response é imutável. Esse método retorna uma cópia do objeto 
+Response que possui o valor de cabeçalho anexado.
+
+<br>
+
+Você pode remover um cabeçalho com o método `withoutHeader($name)` do objeto Response PSR 7.
+
+~~~php 
+$newResponse = $oldResponse->withoutHeader('Allow');
+~~~
 
 <br>
 

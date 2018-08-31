@@ -7,44 +7,44 @@ com o qual você pode inspecionar e manipular o [método](#metodo) de solicitaç
 <br>
 
 ## Como obter o objeto Request
-- O objeto Request PSR 7 pode ser injetado automaticamente pelo [Container de depêndencias](container.md) em suas rotas como argumento do
+O objeto Request PSR 7 pode ser injetado automaticamente pelo [Container de depêndencias](container.md) em suas rotas como argumento do
 callback ou nos métodos do seu controller, exemplo:
 
-    ~~~php 
-    // src/App/config/routes.php
+~~~php 
+// src/App/config/routes.php
 
-    use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
-    $app->get('/foo', function (Request $request) {
-        $data = $request->getParsedBody()->getAll();
-    });
-    ~~~
+$app->get('/foo', function (Request $request) {
+    $data = $request->getParsedBody()->getAll();
+});
+~~~
 
-    ~~~php 
-    // src/App/Controllers/DefaultController.php
+~~~php 
+// src/App/Controllers/DefaultController.php
 
-    <?php
+<?php
 
-    namespace App\Controllers;
+namespace App\Controllers;
 
-    use Gangoy\Core\Http\Controller\AbastractController;
-    use Psr\Http\Message\ServerRequestInterface as Request;
-    use Psr\Http\Message\ResponseInterface as Response;
+use Gangoy\Core\Http\Controller\AbastractController;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
-    class DefaultController extends AbastractController
+class DefaultController extends AbastractController
+{
+    public function index(Request $request, Response $response, $args)
     {
-        public function index(Request $request, Response $response, $args)
-        {
-            $data = $request->getParsedBody()->getAll();
-        
-            return $this->json($response, $data);
-        }
+        $data = $request->getParsedBody()->getAll();
+    
+        return $this->json($response, $data);
     }
-    ~~~
+}
+~~~
 
 <br>
 
-- O objeto Request PSR 7 também é injetado automaticamente pelo [Container de depêndencias](container.md) nos middlewares como o primeiro argumento. 
+O objeto Request PSR 7 também é injetado automaticamente pelo [Container de depêndencias](container.md) nos middlewares como o primeiro argumento. 
 Veja nosso exemplo de implementação:
 
     ~~~php 
