@@ -10,8 +10,9 @@ O uso de componentes Vue.js também estão presentes em nossa estrutura  e previ
 
 <br>
 
-## <a name="assets"></a>Compilando Assets
-Podemos facilmente gerenciar as dependências do frontend usando [Laravel Mix](https://laravel.com/docs/5.6/mix) que fornece uma API fluente para definir a criação do [Webpack](https://webpack.js.org/) para seu aplicativo usando vários pré-processadores CSS e JavaScript comuns. Exemplo:
+## Compilando Assets 
+
+<a name="assets"></a>Podemos facilmente gerenciar as dependências do frontend usando [Laravel Mix](https://laravel.com/docs/5.6/mix) que fornece uma API fluente para definir a criação do [Webpack](https://webpack.js.org/) para seu aplicativo usando vários pré-processadores CSS e JavaScript comuns. Exemplo:
 
 ```javascript
 // webpack.mix.js

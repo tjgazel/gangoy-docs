@@ -3,7 +3,8 @@
 [![Total Downloads](https://poser.pugx.org/tjgazel/gangoy-framework/downloads)](https://packagist.org/packages/tjgazel/gangoy-framework)
 [![License](https://poser.pugx.org/tjgazel/gangoy-framework/license)](https://packagist.org/packages/tjgazel/gangoy-framework)
 
-<center><img src="logo-512x512.png" height=120></center> 
+
+<img src="logo-256x256.png" alt="Gangoy Framework" style="float: left;"/>
 
 **Gangoy** é um framework PHP desenvolvido com um conjunto de bibliotecas bem conhecidas na comunidade PHP e segue as orientações das PSRs 
 fornecidas pelo [**PHP-FIG**](http://www.php-fig.org/ "PHP-FIG").
